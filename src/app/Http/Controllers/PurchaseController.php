@@ -88,7 +88,7 @@ class PurchaseController extends Controller
     {
         $sessionId = $request->query('session_id');
         if ($sessionId) {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+            Stripe::setApiKey(config('services.stripe.secret'));
             $session = Session::retrieve($sessionId);
             $itemId = $session->metadata->item_id;
             $paymentMethodId = $session->metadata->payment_method_id;
